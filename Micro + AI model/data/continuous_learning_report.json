@@ -1,0 +1,18 @@
+{
+  "framework_stage": "Stage 7 (Learn)",
+  "timestamp": "2026-09-11 20:03:41",
+  "isolates_ingested": 1679,
+  "feature_drift_psi": {
+    "Age": 0.0105,
+    "Infection_Frequency": 0.002,
+    "Diabetes_Flag": 0.0,
+    "Prior_Hospitalization": 0.0
+  },
+  "max_psi": 0.0105,
+  "drift_status": "STABLE",
+  "initial_batch_loss": 0.5141,
+  "post_adaptation_loss": 0.5133,
+  "loss_improvement": 0.0008,
+  "recalibrated_temperature": 1.0583,
+  "recalibration_status": "CONVERGED_OPTIMAL"
+}

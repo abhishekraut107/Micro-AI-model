@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSentinel AI - Next-Gen AMR Surveillance & Clinical Digital Twin</title>
+    <meta name="description" content="AI-native antimicrobial resistance surveillance digital twin tracking multi-drug resistance across clinical isolates in real-time.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js for 3D Biological Computation Visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="soft-ui-theme">
+
+    <!-- Global Full-Site 3D Background Canvas (User Request: 3D element at back across the site) -->
+    <div id="canvas-bg-container" class="canvas-bg-wrapper">
+        <canvas id="canvas-3d-bg"></canvas>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 1. HIGH-END HOMEPAGE: BioSentinel AI (Light Neumorphic & Scrollytelling)   -->
+    <!-- ========================================================================= -->
+    <div id="landing-view" class="landing-page active-page">
+
+        <!-- Embossed Neumorphic Pill Navbar -->
+        <header class="navbar-container">
+            <nav class="neuro-pill-navbar" id="home-navbar">
+                <div class="nav-brand" id="brand-logo">
+                    <div class="brand-glyph-soft">
+                        <span class="bio-pulse-dot"></span>
+                    </div>
+                    <div class="brand-text-block">
+                        <span class="brand-title">BioSentinel <span class="brand-accent">AI</span></span>
+                        <span class="brand-sub">AMR Digital Twin</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu-links">
+                    <a href="#hero" class="nav-link-soft active">Home</a>
+                    <a href="#snapshot" class="nav-link-soft">Live Snapshot</a>
+                    <a href="#workflow" class="nav-link-soft">Digital Twin</a>
+                    <a href="#scrolly-timeline" class="nav-link-soft">Outbreak Lead-Time</a>
+                    <a href="#architecture" class="nav-link-soft">AI Architecture</a>
+                </div>
+
+                <div class="nav-cta-wrap">
+                    <button class="btn-neuro-glow" id="btn-launch-portal">
+                        <span class="btn-sparkle">✦</span>
+                        <span>Launch Surveillance Portal</span>
+                        <span class="btn-arrow-icon">→</span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-grid">
+                <!-- Left: Typography & Live Surveillance Stats Counter -->
+                <div class="hero-left-content">
+                    <div class="neuro-badge-soft">
+                        <span class="pulse-indicator-teal"></span>
+                        <span>AI-ASSISTED ANTIMICROBIAL RESISTANCE SURVEILLANCE PLATFORM</span>
+                    </div>
+
+                    <h1 class="hero-headline">
+                        Predict Pathogen Resistance <span class="teal-gradient-text">Before Outbreaks Surface.</span>
+                    </h1>
+
+                    <p class="hero-subtext">
+                        An AI-native surveillance digital twin tracking multi-drug resistance across clinical isolates in real-time. 
+                        Coupling deep residual neural inference, calibrated epistemic uncertainty quantification, and counterfactual 
+                        stewardship simulations to safeguard frontline antibiotics.
+                    </p>
+
+                    <div class="hero-cta-row">
+                        <button class="btn-neuro-primary-soft" id="btn-hero-launch">
+                            <span>Launch Surveillance Portal</span>
+                            <span class="btn-icon-right">⚡</span>
+                        </button>
+                        <button class="btn-neuro-secondary-soft" id="btn-hero-explore">
+                            <span>Explore Digital Twin</span>
+                            <span class="btn-icon-right">↓</span>
+                        </button>
+                    </div>
+
+                    <!-- Live Surveillance Stats Counter Grid -->
+                    <div class="stats-counter-strip">
+                        <div class="stat-soft-pill">
+                            <span class="stat-number">10,710</span>
+                            <span class="stat-label">Clinical Isolates Analyzed</span>
+                        </div>
+                        <div class="stat-soft-pill accent-teal">
+                            <span class="stat-number">+14 to 28 Days</span>
+                            <span class="stat-label">Anomaly Lead-Time</span>
+                        </div>
+                        <div class="stat-soft-pill accent-indigo">
+                            <span class="stat-number">94.2%</span>
+                            <span class="stat-label">Calibrated Confidence (0.62% ECE)</span>
+                        </div>
+                        <div class="stat-soft-pill accent-green">
+                            <span class="stat-number">15 Targets</span>
+                            <span class="stat-label">EUCAST/CLSI Spectrum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Hero 3D Biological Isolate Viewport Card -->
+                <div class="hero-right-viewport">
+                    <div class="viewport-neuro-card" id="hero-3d-card">
+                        <div class="viewport-header-strip">
+                            <div class="viewport-status">
+                                <span class="status-dot-active"></span>
+                                <span class="status-txt">E. coli / Plasmid Receptor Complex (3D Live)</span>
+                            </div>
+                            <span class="viewport-tag">Mouse Parallax Active</span>
+                        </div>
+
+                        <!-- Focused 3D interactive viewport container -->
+                        <div class="canvas-3d-hero-container" id="hero-canvas-mount">
+                            <div class="viewport-instruction-badge">
+                                <span>🖱 Move cursor to rotate & interact with antibiotic ligands</span>
+                            </div>
+                        </div>
+
+                        <div class="viewport-footer-strip">
+                            <div class="receptor-legend">
+                                <span class="legend-chip chip-teal">● Quinolone Target (GyrA)</span>
+                                <span class="legend-chip chip-indigo">● β-Lactam Ring</span>
+                                <span class="legend-chip chip-amber">● Carbapenemase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll Phase 2: Live Surveillance Snapshot (Neumorphic Data Grid) -->
+        <section class="section-snapshot" id="snapshot">
+            <div class="section-header-center">
+                <span class="section-subheading">REAL-TIME CLINICAL INTELLIGENCE</span>
+                <h2 class="section-main-heading">Live Surveillance Snapshot</h2>
+                <p class="section-lead-text">
+                    Continuous monitoring of institutional AST antibiograms, detecting statistically significant resistance shifts prior to threshold breaches.
+                </p>
+            </div>
+
+            <div class="snapshot-cards-grid">
+                <!-- Card 1: E. coli vs Fluoroquinolones Drift -->
+                <div class="neuro-card-soft" id="card-drift">
+                    <div class="card-soft-header">
+                        <div class="card-icon-bubble bubble-teal">📈</div>
+                        <div class="card-header-titles">
+                            <h3>E. coli vs. Fluoroquinolones Drift</h3>
+                            <span class="card-sub-category">Temporal Trajectory (2019 – 2025)</span>
+                        </div>
+                    </div>
+
+                    <div class="sparkline-wrapper">
+                        <!-- Interactive SVG Sparkline with subtle gradient and data nodes -->
+                        <svg class="sparkline-svg" viewBox="0 0 340 120" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="tealGlowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#0D9488" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#0D9488" stop-opacity="0.0"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Fill Area -->
+                            <path class="sparkline-area" d="M 10 95 Q 60 90, 100 82 T 180 75 T 260 55 T 330 35 L 330 115 L 10 115 Z" fill="url(#tealGlowGrad)"/>
+                            <!-- Trajectory Line -->
+                            <path class="sparkline-path" d="M 10 95 Q 60 90, 100 82 T 180 75 T 260 55 T 330 35"/>
+                            <!-- Data Nodes -->
+                            <circle class="sparkline-point" cx="10" cy="95" r="4.5" data-info="2019: 12.1%"/>
+                            <circle class="sparkline-point" cx="100" cy="82" r="4.5" data-info="2021: 13.8%"/>
+                            <circle class="sparkline-point" cx="180" cy="75" r="4.5" data-info="2023: 15.2%"/>
+                            <circle class="sparkline-point" cx="260" cy="55" r="4.5" data-info="2024: 18.9%"/>
+                            <circle class="sparkline-point active-pulse" cx="330" cy="35" r="6" data-info="2025 (Test): 22.4% (Surge)"/>
+                        </svg>
+                    </div>
+
+                    <div class="card-stats-footer">
+                        <div class="footer-stat-col">
+                            <span class="f-lbl">Baseline</span>
+                            <span class="f-val">16.5%</span>
+                        </div>
+                        <div class="footer-stat-col">
+                            <span class="f-lbl">Observed (2025)</span>
+                            <span class="f-val text-teal">22.4%</span>
+                        </div>
+                        <div class="footer-stat-col">
+                            <span class="f-lbl">Shift (Δ)</span>
+                            <span class="f-val text-rose font-bold">+5.9% (Surge)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Active Anomaly Alerts -->
+                <div class="neuro-card-soft" id="card-alerts">
+                    <div class="card-soft-header">
+                        <div class="card-icon-bubble bubble-rose">🚨</div>
+                        <div class="card-header-titles">
+                            <h3>Active Anomaly Alerts</h3>
+                            <span class="card-sub-category">High-Priority Spatial Surges</span>
+                        </div>
+                        <div class="status-badge-soft badge-danger">
+                            <span class="badge-dot-pulsing"></span>
+                            <span>2 FLAGGED CLUSTERS</span>
+                        </div>
+                    </div>
+
+                    <div class="anomaly-items-list">
+                        <div class="anomaly-item-soft">
+                            <div class="item-meta-top">
+                                <span class="species-name font-bold">Klebsiella pneumoniae</span>
+                                <span class="antibiotic-tag tag-rose">IPM (Imipenem)</span>
+                            </div>
+                            <p class="item-desc">Carbapenem resistance surge: 54.5% → 63.8% (Δ+9.3%, Z=2.11, p&lt;0.05). Risk of plasmid-mediated KPC/NDM spread.</p>
+                        </div>
+                        <div class="anomaly-item-soft">
+                            <div class="item-meta-top">
+                                <span class="species-name font-bold">Serratia marcescens</span>
+                                <span class="antibiotic-tag tag-amber">CIP (Ciprofloxacin)</span>
+                            </div>
+                            <p class="item-desc">3-fold fluoroquinolone surge: 4.7% → 14.6% (Δ+9.9%, Z=2.99, p&lt;0.01). Flagged for reflex confirmation.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-action-bar">
+                        <button class="btn-link-action" id="btn-view-matrix">
+                            <span>Open Detailed Resistance Matrix</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Calibrated Confidence Index -->
+                <div class="neuro-card-soft" id="card-confidence">
+                    <div class="card-soft-header">
+                        <div class="card-icon-bubble bubble-indigo">🎯</div>
+                        <div class="card-header-titles">
+                            <h3>Calibrated Confidence Index</h3>
+                            <span class="card-sub-category">Conformal Prediction Intervals</span>
+                        </div>
+                    </div>
+
+                    <div class="confidence-gauge-wrap">
+                        <div class="gauge-arc-outer">
+                            <svg class="gauge-svg" viewBox="0 0 160 100">
+                                <path class="gauge-track" d="M 20 90 A 60 60 0 0 1 140 90" fill="none" stroke="#E2E8F0" stroke-width="12" stroke-linecap="round"/>
+                                <path class="gauge-fill" d="M 20 90 A 60 60 0 0 1 140 90" fill="none" stroke="#0D9488" stroke-width="12" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="11.3"/>
+                            </svg>
+                            <div class="gauge-center-text">
+                                <span class="gauge-val font-mono">94.2%</span>
+                                <span class="gauge-lbl">Calibrated Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calibration-specs-list">
+                        <div class="spec-row">
+                            <span class="spec-name">Expected Calibration Error (ECE)</span>
+                            <span class="spec-val text-teal font-mono">0.62% (Optimal)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Post-hoc Temperature Parameter (T)</span>
+                            <span class="spec-val font-mono">0.981</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Uncertainty Metric</span>
+                            <span class="spec-val text-muted">Monte Carlo Epistemic CI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How the Digital Twin Works (Scroll-Driven Workflow) -->
+        <section class="section-workflow" id="workflow">
+            <div class="section-header-center">
+                <span class="section-subheading">SEVEN-STAGE AI LIFECYCLE</span>
+                <h2 class="section-main-heading">How the Digital Twin Works</h2>
+                <p class="section-lead-text">
+                    Transforming raw prospective hospital antibiograms into proactive clinical interventions with human-in-the-loop validation.
+                </p>
+            </div>
+
+            <div class="workflow-steps-path">
+                <!-- Step 1: Ingest -->
+                <div class="workflow-step-card-soft">
+                    <div class="step-badge-number font-mono">01</div>
+                    <div class="step-icon-circle icon-teal">📥</div>
+                    <h3 class="step-title">Ingest</h3>
+                    <p class="step-subtitle">Clinical AST Isolate Data & Demographics</p>
+                    <p class="step-desc">
+                        Prospective longitudinal ingestion of microbiological culture records. Normalizes bacterial taxonomy across 10 genera and standardizes 15 antibiotic susceptibility profiles (EUCAST/CLSI binary breakpoints) with zero synthetic imputation.
+                    </p>
+                    <div class="step-tags-wrap">
+                        <span class="tag-pill">10,710 Records</span>
+                        <span class="tag-pill">Temporal 80/20 Split</span>
+                    </div>
+                </div>
+
+                <!-- Step Connector Line -->
+                <div class="step-connector-line">
+                    <div class="connector-pulse"></div>
+                </div>
+
+                <!-- Step 2: Model -->
+                <div class="workflow-step-card-soft">
+                    <div class="step-badge-number font-mono">02</div>
+                    <div class="step-icon-circle icon-indigo">🧠</div>
+                    <h3 class="step-title">Model</h3>
+                    <p class="step-subtitle">Multi-Label Neural Classification & Bayesian Uncertainty</p>
+                    <p class="step-desc">
+                        Deep Residual MLP trained with Masked Binary Cross-Entropy Loss to handle partial hospital testing panels. Integrates Monte Carlo epistemic uncertainty estimation and post-hoc temperature calibration (ECE 0.62%) to prevent clinical overconfidence.
+                    </p>
+                    <div class="step-tags-wrap">
+                        <span class="tag-pill">Residual MLP</span>
+                        <span class="tag-pill">Isolation Forest</span>
+                        <span class="tag-pill">MC Dropout</span>
+                    </div>
+                </div>
+
+                <!-- Step Connector Line -->
+                <div class="step-connector-line">
+                    <div class="connector-pulse"></div>
+                </div>
+
+                <!-- Step 3: Intervene -->
+                <div class="workflow-step-card-soft">
+                    <div class="step-badge-number font-mono">03</div>
+                    <div class="step-icon-circle icon-green">🛡️</div>
+                    <h3 class="step-title">Intervene</h3>
+                    <p class="step-subtitle">Human-in-the-Loop Clinical Triage & Stewardship</p>
+                    <p class="step-desc">
+                        Dual-threshold decision engine routes isolates into 3 clinical tiers: Tier 1 Critical (immediate carbapenem restriction), Tier 2 Confirmatory (reflex molecular PCR), and Tier 3 Routine. Infectious disease specialists sign off directly in a dedicated escalation registry.
+                    </p>
+                    <div class="step-tags-wrap">
+                        <span class="tag-pill">Tier 1/2/3 Triage</span>
+                        <span class="tag-pill">Stewardship Lab</span>
+                        <span class="tag-pill">Audit Trail</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll Phase 3: Outbreak Timeline Scrub (Dynamic Scrollytelling) -->
+        <section class="section-scrolly" id="scrolly-timeline">
+            <div class="section-header-center">
+                <span class="section-subheading">SCROLLYTELLING SURVEILLANCE LOOP</span>
+                <h2 class="section-main-heading">Clinical Lead-Time Advantage: +14 to 28 Days</h2>
+                <p class="section-lead-text">
+                    See how BioSentinel AI detects emerging multidrug resistance clusters prospective weeks ahead of conventional CLSI M39 monthly retrospective antibiograms.
+                </p>
+            </div>
+
+            <div class="scrolly-container-soft">
+                <!-- Interactive Timeline Scrubber Control -->
+                <div class="scrolly-scrubber-bar">
+                    <div class="scrubber-labels">
+                        <span class="s-step font-mono" id="label-step-1">Day -28: Baseline Drift</span>
+                        <span class="s-step font-mono active" id="label-step-2">Day -14: BioSentinel Early Signal</span>
+                        <span class="s-step font-mono" id="label-step-3">Day 0: Outbreak Threshold</span>
+                        <span class="s-step font-mono" id="label-step-4">Day +14: Conventional CLSI Alarm</span>
+                    </div>
+                    <div class="scrubber-range-wrap">
+                        <input type="range" id="timeline-scrubber" min="1" max="4" value="2" step="1" class="soft-range-slider">
+                    </div>
+                </div>
+
+                <!-- Dynamic Comparison Cards -->
+                <div class="scrolly-cards-comparison">
+                    <!-- BioSentinel AI Approach -->
+                    <div class="scrolly-card-panel panel-highlight-teal">
+                        <div class="panel-badge-top">
+                            <span class="pulse-indicator-teal"></span>
+                            <span>BIOSENTINEL AI PROSPECTIVE ENGINE</span>
+                        </div>
+                        <h4 class="panel-event-title" id="ai-timeline-title">Day -14: Automated Z-Score Surge Triggered</h4>
+                        <p class="panel-event-desc" id="ai-timeline-desc">
+                            Digital twin isolates <em>K. pneumoniae</em> carbapenem drift (Z = 2.11). Anomaly detector flags atypical multi-resistance phenotype. Automated Tier 1 clinical escalation alerts ID pharmacist 14 days before standard monthly reporting.
+                        </p>
+                        <div class="panel-metric-row">
+                            <div class="p-met">
+                                <span class="p-met-val text-teal" id="ai-cases-averted">350 Cases</span>
+                                <span class="p-met-lbl">Estimated Averted</span>
+                            </div>
+                            <div class="p-met">
+                                <span class="p-met-val text-indigo" id="ai-speed">+14 Days</span>
+                                <span class="p-met-lbl">Response Head-Start</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conventional Retrospective Surveillance -->
+                    <div class="scrolly-card-panel">
+                        <div class="panel-badge-top">
+                            <span class="badge-neutral-dot"></span>
+                            <span>CONVENTIONAL RETROSPECTIVE SURVEILLANCE</span>
+                        </div>
+                        <h4 class="panel-event-title" id="conv-timeline-title">Day -14: Silent Clonal Propagation</h4>
+                        <p class="panel-event-desc" id="conv-timeline-desc">
+                            Isolates tested individually with standard disk diffusion. No centralized real-time epistemic aggregation. Data remains fragmented across ward silos until end-of-month institutional CLSI M39 batch review.
+                        </p>
+                        <div class="panel-metric-row">
+                            <div class="p-met">
+                                <span class="p-met-val text-rose" id="conv-delay">0 Days</span>
+                                <span class="p-met-lbl">Current Alarm</span>
+                            </div>
+                            <div class="p-met">
+                                <span class="p-met-val text-muted" id="conv-status">Unreported</span>
+                                <span class="p-met-lbl">Surveillance Status</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seven-Stage AI Engineering Foundations -->
+        <section class="section-architecture" id="architecture">
+            <div class="section-header-center">
+                <span class="section-subheading">RIGOROUS SCIENTIFIC METHODOLOGY</span>
+                <h2 class="section-main-heading">Seven-Stage AI Engineering Architecture</h2>
+                <p class="section-lead-text">Built to withstand the stringent demands of hospital antimicrobial stewardship.</p>
+            </div>
+
+            <div class="architecture-grid-3col">
+                <div class="arch-card-soft">
+                    <div class="arch-icon-box icon-teal">🧬</div>
+                    <span class="arch-stage-tag">STAGES 1 – 3: BOUND & MODEL</span>
+                    <h3>Masked Multilabel Deep Neural Network</h3>
+                    <p>
+                        Custom PyTorch architecture overcoming sparse hospital antibiograms without introducing synthetic bias. Calibrated using Adam-optimized temperature scaling to achieve an ultra-low 0.62% ECE.
+                    </p>
+                    <div class="arch-specs-footer">
+                        <span>Residual Linear Blocks</span>
+                        <span>MaskedBCELoss</span>
+                        <span>Monte Carlo CI</span>
+                    </div>
+                </div>
+
+                <div class="arch-card-soft">
+                    <div class="arch-icon-box icon-indigo">🔬</div>
+                    <span class="arch-stage-tag">STAGES 4 – 5: UNDERSTAND & DECIDE</span>
+                    <h3>Digital Twin & Dual-Threshold Triage</h3>
+                    <p>
+                        Rolling species-specific baseline models mapping 15×15 phenotypic co-selection pathways. Automatically diverts high-risk isolates into Tier 1/2 clinical queues with actionable stewardship alerts.
+                    </p>
+                    <div class="arch-specs-footer">
+                        <span>Isolation Forest</span>
+                        <span>Co-Resistance Matrix</span>
+                        <span>Dual Thresholds</span>
+                    </div>
+                </div>
+
+                <div class="arch-card-soft">
+                    <div class="arch-icon-box icon-green">📊</div>
+                    <span class="arch-stage-tag">STAGES 6 – 7: ACT & LEARN</span>
+                    <h3>Counterfactual Simulation & Adaptation</h3>
+                    <p>
+                        In-silico experimentation platform modeling the population-wide impact of antibiotic restriction and infection barriers. Continuously evaluates Population Stability Index (PSI = 0.0105) to ensure safety.
+                    </p>
+                    <div class="arch-specs-footer">
+                        <span>Stewardship Lab</span>
+                        <span>PSI Covariate Tracking</span>
+                        <span>FastAPI REST Core</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action: Recessed Neumorphic Card -->
+        <section class="section-recessed-cta">
+            <div class="recessed-card-soft">
+                <div class="recessed-content">
+                    <span class="recessed-badge">INTERACTIVE COUNTERFACTUAL LAB</span>
+                    <h2 class="recessed-title">Test Stewardship Policies in Real-Time</h2>
+                    <p class="recessed-desc">
+                        Simulate the systemic impact of reducing fluoroquinolone and cephalosporin prescription pressure across a 10,710-isolate cohort. Observe projected resistance reductions and averted clinical cases instantly.
+                    </p>
+                    <div class="recessed-actions">
+                        <button class="btn-neuro-primary-soft" id="btn-cta-sim">
+                            <span>Open Scenario Simulator</span>
+                            <span>⚡</span>
+                        </button>
+                        <button class="btn-neuro-secondary-soft" id="btn-cta-scorer">
+                            <span>Score an Isolate</span>
+                            <span>🧬</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clean Minimal Footer with Status Indicator -->
+        <footer class="footer-neuro-soft">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <div class="footer-brand">
+                        <span class="brand-title-sm">BioSentinel <span class="brand-accent">AI</span></span>
+                        <span class="footer-copy">© 2026 AI-Native Antimicrobial Resistance Surveillance System.</span>
+                    </div>
+                    <div class="footer-compliance">
+                        <span>EUCAST / CLSI Calibrated</span> • <span>HIPAA / GDPR De-identified</span> • <span>Prospective Cohort Validated</span>
+                    </div>
+                </div>
+
+                <div class="footer-right">
+                    <div class="agent-status-badge">
+                        <span class="agent-dot-pulsing"></span>
+                        <span class="agent-status-text">SURVEILLANCE AGENT ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- 2. CLINICAL SURVEILLANCE PORTAL / DASHBOARD (Refined Light Neumorphism)    -->
+    <!-- ========================================================================= -->
+    <div id="dashboard-view" class="dashboard-page">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar-neuro-soft">
+            <div class="sidebar-top-section">
+                <!-- Return to Home Button (Prominent & Non-overlapping) -->
+                <button class="btn-return-home-soft" id="btn-back-home" title="Return to Homepage">
+                    <span class="return-arrow">←</span>
+                    <span>Return to Home</span>
+                </button>
+                
+                <div class="portal-brand-block">
+                    <div class="brand-glyph-soft-sm"></div>
+                    <div class="portal-brand-text">
+                        <h3 class="portal-title">BioSentinel <span>AI</span></h3>
+                        <p class="portal-sub">Clinical Surveillance Portal</p>
+                    </div>
+                </div>
+                
+                <div class="portal-spec-pill">EUCAST / CLSI v1.0 Calibrated</div>
+            </div>
+
+            <nav class="sidebar-menu-soft">
+                <button class="menu-item-soft active" data-tab="overview" id="nav-overview">
+                    <span class="m-icon">📊</span>
+                    <span>Overview & Twin</span>
+                </button>
+                <button class="menu-item-soft" data-tab="signals" id="nav-signals">
+                    <span class="m-icon">🚨</span>
+                    <span>Early Warning & Matrix</span>
+                </button>
+                <button class="menu-item-soft" data-tab="scorer" id="nav-scorer">
+                    <span class="m-icon">🧬</span>
+                    <span>Isolate AST Scorer</span>
+                </button>
+                <button class="menu-item-soft" data-tab="simulator" id="nav-simulator">
+                    <span class="m-icon">🔬</span>
+                    <span>Scenario Simulator</span>
+                </button>
+                <button class="menu-item-soft" data-tab="escalations" id="nav-escalations">
+                    <span class="m-icon">⚠️</span>
+                    <span>Escalation Queue</span>
+                    <span class="badge-count-soft" id="escalation-badge">1</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer-soft">
+                <div class="agent-status-pill-soft">
+                    <span class="status-dot-pulse-teal" id="api-status-dot"></span>
+                    <span id="api-status-text">Backend: Connected</span>
+                </div>
+                <span class="api-address-lbl" id="api-status-hint">http://127.0.0.1:8000</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content-soft">
+            <!-- Portal Header -->
+            <header class="top-header-soft">
+                <div class="header-titles">
+                    <h1 class="page-main-title" id="page-title">Digital Twin Surveillance Center</h1>
+                    <p class="page-main-subtitle" id="page-subtitle">
+                        Real-time prospective monitoring across institutional AST antibiograms, detecting emerging multidrug resistance.
+                    </p>
+                </div>
+                <div class="header-actions-group">
+                    <button class="btn-top-back-home" id="btn-top-back-home" title="Return to Homepage">
+                        <span>← Return to Home</span>
+                    </button>
+                    <div class="header-badges-row">
+                        <div class="header-pill-soft">
+                            <span class="pill-k">Prospective Cohort</span>
+                            <span class="pill-v">2019 – 2025</span>
+                        </div>
+                        <div class="header-pill-soft">
+                            <span class="pill-k">Expected Calibration Error</span>
+                            <span class="pill-v text-teal font-mono">0.62% (High Reliability)</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- TAB 1: OVERVIEW & DIGITAL TWIN -->
+            <section id="view-overview" class="tab-view active">
+                <div class="metrics-summary-grid">
+                    <div class="metric-card-soft">
+                        <div class="m-card-label">TOTAL ISOLATES ANALYZED</div>
+                        <div class="m-card-number" id="stat-total-isolates">10,710</div>
+                        <div class="m-card-footer"><span class="chip-soft">8,395 Dated</span> 2019–2025 Prospective Split</div>
+                    </div>
+                    <div class="metric-card-soft accent-border-amber">
+                        <div class="m-card-label">MDR PREVALENCE RATE</div>
+                        <div class="m-card-number text-amber" id="stat-mdr-rate">75.89%</div>
+                        <div class="m-card-footer">Non-susceptible to ≥3 antibiotic classes</div>
+                    </div>
+                    <div class="metric-card-soft accent-border-rose">
+                        <div class="m-card-label">ACTIVE EMERGING SIGNALS</div>
+                        <div class="m-card-number text-rose" id="stat-signals-count">2 Alerts</div>
+                        <div class="m-card-footer">Klebsiella (IPM) & Serratia (CIP)</div>
+                    </div>
+                    <div class="metric-card-soft accent-border-teal">
+                        <div class="m-card-label">CLINICAL LEAD-TIME ADVANTAGE</div>
+                        <div class="m-card-number text-teal" id="stat-leadtime">+14 to 28 Days</div>
+                        <div class="m-card-footer">Earlier than standard CLSI M39 alarms</div>
+                    </div>
+                </div>
+
+                <div class="content-grid-2col">
+                    <!-- Species Distribution Panel -->
+                    <div class="panel-card-soft">
+                        <div class="panel-header-soft">
+                            <div>
+                                <h3>Bacterial Species Taxonomy Breakdown</h3>
+                                <p class="p-sub">Distribution across 10 standardized clinical taxa</p>
+                            </div>
+                            <span class="panel-tag-soft">Cohort Analysis</span>
+                        </div>
+                        <div class="species-list" id="species-distribution-list">
+                            <!-- Injected by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Baseline Resistance by Class -->
+                    <div class="panel-card-soft">
+                        <div class="panel-header-soft">
+                            <div>
+                                <h3>Antimicrobial Class Baseline Resistance</h3>
+                                <p class="p-sub">Institutional world model empirical priors</p>
+                            </div>
+                            <span class="panel-tag-soft">Digital Twin</span>
+                        </div>
+                        <div class="class-resistance-bars" id="class-resistance-container">
+                            <!-- Injected by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: EARLY WARNING SIGNALS & CO-RESISTANCE MATRIX -->
+            <section id="view-signals" class="tab-view">
+                <div class="panel-card-soft mb-4">
+                    <div class="panel-header-soft">
+                        <div>
+                            <h3 class="text-rose">Emerging Resistance Early-Warning Signals</h3>
+                            <p class="p-sub">Statistically significant resistance surges in the prospective cohort (Z ≥ 1.8, p &lt; 0.05)</p>
+                        </div>
+                        <div class="status-badge-soft badge-danger">2 SURGE ALERTS ACTIVE</div>
+                    </div>
+                    <div class="table-container-soft">
+                        <table class="data-table-soft" id="signals-table">
+                            <thead>
+                                <tr>
+                                    <th>Severity</th>
+                                    <th>Pathogen</th>
+                                    <th>Antibiotic</th>
+                                    <th>Class</th>
+                                    <th>Baseline Rate</th>
+                                    <th>Observed (Test)</th>
+                                    <th>Surge (Δ)</th>
+                                    <th>Z-Score</th>
+                                    <th>Clinical Implication</th>
+                                </tr>
+                            </thead>
+                            <tbody id="signals-tbody">
+                                <!-- Injected by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 15x15 Co-Resistance Heatmap -->
+                <div class="panel-card-soft">
+                    <div class="panel-header-soft">
+                        <div>
+                            <h3>15×15 Phenotypic Cross-Resistance Correlation Matrix</h3>
+                            <p class="p-sub">Pairwise Pearson correlation of AST profiles across 10,710 isolates revealing co-selection hotspots.</p>
+                        </div>
+                        <span class="panel-tag-soft">Co-Selection Heatmap</span>
+                    </div>
+                    <div class="matrix-scroll-wrapper" id="matrix-container">
+                        <!-- Heatmap rendered via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: ISOLATE AST SCORER & TRIAGE -->
+            <section id="view-scorer" class="tab-view">
+                <div class="content-grid-2col">
+                    <!-- Patient & Isolate Profile Input Form -->
+                    <div class="panel-card-soft">
+                        <div class="panel-header-soft">
+                            <div>
+                                <h3>Patient & Isolate Clinical Profile</h3>
+                                <p class="p-sub">Real-time deep multi-label neural inference</p>
+                            </div>
+                            <span class="panel-tag-soft">Neural Scorer</span>
+                        </div>
+
+                        <div class="preset-pill-row mb-3">
+                            <span class="preset-label">Quick Presets:</span>
+                            <button class="btn-preset-pill" id="preset-high-risk">Elderly Hospitalized (K. pneumoniae)</button>
+                            <button class="btn-preset-pill" id="preset-low-risk">Outpatient (E. coli)</button>
+                        </div>
+
+                        <form id="isolate-form" class="clinical-input-form">
+                            <div class="form-group-soft">
+                                <label for="input-species">Bacterial Species</label>
+                                <select id="input-species" class="form-control-soft" required>
+                                    <option value="Klebsiella pneumoniae">Klebsiella pneumoniae</option>
+                                    <option value="Escherichia coli" selected>Escherichia coli</option>
+                                    <option value="Proteus mirabilis">Proteus mirabilis</option>
+                                    <option value="Enterobacteria spp.">Enterobacteria spp.</option>
+                                    <option value="Pseudomonas aeruginosa">Pseudomonas aeruginosa</option>
+                                    <option value="Acinetobacter baumannii">Acinetobacter baumannii</option>
+                                    <option value="Citrobacter spp.">Citrobacter spp.</option>
+                                    <option value="Serratia marcescens">Serratia marcescens</option>
+                                    <option value="Morganella morganii">Morganella morganii</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row-2col">
+                                <div class="form-group-soft">
+                                    <label for="input-age">Patient Age (Years)</label>
+                                    <input type="number" id="input-age" class="form-control-soft" value="68" min="0" max="110" required>
+                                </div>
+                                <div class="form-group-soft">
+                                    <label for="input-gender">Biological Gender</label>
+                                    <select id="input-gender" class="form-control-soft" required>
+                                        <option value="M" selected>Male (M)</option>
+                                        <option value="F">Female (F)</option>
+                                        <option value="Unknown">Unknown</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row-2col">
+                                <div class="form-group-soft">
+                                    <label for="input-hospital">Prior Hospitalization (90 Days)</label>
+                                    <select id="input-hospital" class="form-control-soft">
+                                        <option value="1" selected>Yes (Nosocomial exposure)</option>
+                                        <option value="0">No (Community-acquired)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-soft">
+                                    <label for="input-infection-freq">Infection Frequency</label>
+                                    <input type="number" id="input-infection-freq" class="form-control-soft" value="2.0" step="1.0" min="0" max="10">
+                                </div>
+                            </div>
+
+                            <div class="form-row-2col">
+                                <div class="form-group-soft">
+                                    <label for="input-diabetes">Diabetes Mellitus</label>
+                                    <select id="input-diabetes" class="form-control-soft">
+                                        <option value="1" selected>Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-soft">
+                                    <label for="input-hypertension">Hypertension</label>
+                                    <select id="input-hypertension" class="form-control-soft">
+                                        <option value="1" selected>Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-neuro-submit-soft" id="btn-score-isolate">
+                                <span>⚡</span> Run Neural Inference & Triage
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Prediction Results & Decision Triage Panel -->
+                    <div class="panel-card-soft" id="scoring-results-panel">
+                        <div class="panel-header-soft">
+                            <div>
+                                <h3>Clinical Triage & Uncertainty</h3>
+                                <p class="p-sub">Bayesian epistemic estimation & multi-tier routing</p>
+                            </div>
+                            <span class="badge-status-soft" id="res-triage-badge">Awaiting Input</span>
+                        </div>
+
+                        <div id="results-placeholder" class="placeholder-box-soft">
+                            <div class="p-icon">🧬</div>
+                            <p>Select patient parameters and click <strong>"Run Neural Inference"</strong> to generate 15-target calibrated resistance probabilities and clinical triage guidance.</p>
+                        </div>
+
+                        <div id="results-content" style="display: none;">
+                            <!-- Triage Alert Banner -->
+                            <div class="alert-banner-soft mb-3" id="res-alert-banner">
+                                <div class="alert-title-text" id="res-alert-title">Critical Escalation Required</div>
+                                <div class="alert-body-text" id="res-alert-guidance">Guidance text...</div>
+                            </div>
+
+                            <!-- Meta Stats -->
+                            <div class="stats-strip-soft mb-3">
+                                <div class="stat-box-soft">
+                                    <span class="s-lbl">Epistemic Uncertainty</span>
+                                    <span class="s-val font-mono" id="res-uncertainty">2.5%</span>
+                                    <small class="s-sub" id="res-uncertainty-sub">High Confidence</small>
+                                </div>
+                                <div class="stat-box-soft">
+                                    <span class="s-lbl">Anomaly Score</span>
+                                    <span class="s-val font-mono" id="res-anomaly-score">0.71</span>
+                                    <small class="s-sub" id="res-anomaly-flag">Typical Phenotype</small>
+                                </div>
+                                <div class="stat-box-soft">
+                                    <span class="s-lbl">Predicted MDR</span>
+                                    <span class="s-val text-rose font-bold" id="res-mdr-flag">YES</span>
+                                    <small class="s-sub" id="res-resistant-count">5 Classes</small>
+                                </div>
+                            </div>
+
+                            <!-- 15-Antibiotic Probability Grid -->
+                            <div class="abx-predictions-container">
+                                <h4>15-Antibiotic Calibrated Probability Spectrum (95% CI)</h4>
+                                <div class="abx-bars-grid" id="abx-predictions-grid">
+                                    <!-- Injected via JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: COUNTERFACTUAL SCENARIO SIMULATOR -->
+            <section id="view-simulator" class="tab-view">
+                <div class="panel-card-soft mb-4">
+                    <div class="panel-header-soft">
+                        <div>
+                            <h3>Counterfactual Policy Intervention Simulator</h3>
+                            <p class="p-sub">Model population-wide epidemiological impact of antimicrobial restriction policies across 6,716 isolates.</p>
+                        </div>
+                        <span class="panel-tag-soft">Digital Twin World Model</span>
+                    </div>
+
+                    <div class="simulator-controls-grid">
+                        <div class="control-box-soft">
+                            <div class="control-header-soft">
+                                <label for="slider-fq">Fluoroquinolone Restriction (CIP, OFX)</label>
+                                <span class="control-val font-mono text-teal" id="val-slider-fq">30%</span>
+                            </div>
+                            <input type="range" id="slider-fq" min="0" max="60" value="30" step="5" class="soft-range-slider">
+                            <p class="control-hint-soft">Curbs empiric ciprofloxacin selection pressure on chromosomal <em>gyrA</em>.</p>
+                        </div>
+
+                        <div class="control-box-soft">
+                            <div class="control-header-soft">
+                                <label for="slider-ceph">3rd-Gen Cephalosporin Stewardship (CTX/CRO)</label>
+                                <span class="control-val font-mono text-teal" id="val-slider-ceph">20%</span>
+                            </div>
+                            <input type="range" id="slider-ceph" min="0" max="60" value="20" step="5" class="soft-range-slider">
+                            <p class="control-hint-soft">Curtails ceftriaxone overuse and plasmid ESBL co-selection.</p>
+                        </div>
+
+                        <div class="control-box-soft">
+                            <div class="control-header-soft">
+                                <label for="slider-inf">Infection Control / Transmission Barrier</label>
+                                <span class="control-val font-mono text-teal" id="val-slider-inf">15%</span>
+                            </div>
+                            <input type="range" id="slider-inf" min="0" max="40" value="15" step="5" class="soft-range-slider">
+                            <p class="control-hint-soft">Reduces nosocomial cross-transmission in inpatient cohorts.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button class="btn-neuro-submit-soft" id="btn-run-simulation">
+                            <span>🚀</span> Run Counterfactual Policy Simulation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Simulation Output Panel -->
+                <div class="panel-card-soft" id="sim-results-panel">
+                    <div class="panel-header-soft">
+                        <div>
+                            <h3>Simulated Population Outcomes</h3>
+                            <p class="p-sub">Counterfactual projections on institutional cohort</p>
+                        </div>
+                        <span class="panel-tag-soft" id="sim-cohort-tag">Cohort: 6,716 Isolates</span>
+                    </div>
+
+                    <div class="metrics-summary-grid mb-4">
+                        <div class="metric-card-soft">
+                            <div class="m-card-label">PROJECTED MDR PREVALENCE</div>
+                            <div class="m-card-number text-teal" id="sim-mdr-projected">70.68%</div>
+                            <div class="m-card-footer">Down from <span id="sim-mdr-baseline">75.89%</span> (<span id="sim-mdr-delta" class="text-teal font-bold">-6.86%</span>)</div>
+                        </div>
+                        <div class="metric-card-soft accent-border-teal">
+                            <div class="m-card-label">ESTIMATED MDR CASES AVERTED</div>
+                            <div class="m-card-number text-indigo" id="sim-cases-averted">350 Cases</div>
+                            <div class="m-card-footer">Within institutional hospital cohort</div>
+                        </div>
+                        <div class="metric-card-soft accent-border-amber">
+                            <div class="m-card-label">PRESERVED LEAD-TIME ADVANTAGE</div>
+                            <div class="m-card-number text-amber" id="sim-leadtime">27 Days</div>
+                            <div class="m-card-footer">Head-start before critical outbreak alarms</div>
+                        </div>
+                    </div>
+
+                    <div class="content-grid-2col">
+                        <div class="panel-inner-soft">
+                            <h4>Target Resistance Reduction</h4>
+                            <div class="abx-bars-grid" id="sim-reduction-bars">
+                                <!-- Injected via JS -->
+                            </div>
+                        </div>
+                        <div class="panel-inner-soft">
+                            <h4>Epidemiological Biological Mechanisms</h4>
+                            <ul class="insights-list-soft">
+                                <li><strong>Fluoroquinolone Elasticity:</strong> Direct reduction in selective pressure suppresses chromosomal <em>gyrA/parC</em> mutant enrichment.</li>
+                                <li><strong>Carbapenem Spillover Protection:</strong> Curtailing 3rd-gen cephalosporin exposure attenuates co-selection of plasmid-borne carbapenemases (<em>bla</em><sub>KPC</sub> / <em>bla</em><sub>NDM</sub>).</li>
+                                <li><strong>Transmission Barrier Multiplier:</strong> Nosocomial barrier nursing prevents clonal amplification across intensive care units.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: HUMAN-IN-THE-LOOP ESCALATION REGISTRY -->
+            <section id="view-escalations" class="tab-view">
+                <div class="panel-card-soft">
+                    <div class="panel-header-soft">
+                        <div>
+                            <h3>Clinical Triage & Escalation Registry</h3>
+                            <p class="p-sub">Human-in-the-loop review queue for clinical microbiologists and ID pharmacists.</p>
+                        </div>
+                        <div style="display: flex; gap: 0.65rem; align-items: center;">
+                            <button class="btn-preset-pill font-bold" id="btn-open-create-modal" style="color: #0D9488; border-color: rgba(13, 148, 136, 0.4);">+ Enqueue Clinical Case</button>
+                            <button class="btn-preset-pill" id="btn-refresh-escalations">Refresh Queue</button>
+                        </div>
+                    </div>
+
+                    <div class="table-container-soft">
+                        <table class="data-table-soft" id="escalations-table">
+                            <thead>
+                                <tr>
+                                    <th>Escalation ID</th>
+                                    <th>Isolate ID</th>
+                                    <th>Timestamp</th>
+                                    <th>Species</th>
+                                    <th>Triage Tier</th>
+                                    <th>Critical Antibiotics at Risk</th>
+                                    <th>Uncertainty</th>
+                                    <th>Status</th>
+                                    <th>Clinical Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="escalations-tbody">
+                                <!-- Injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Human-in-the-Loop Clinical Action Modal Dialog -->
+    <div class="modal-backdrop-soft" id="action-modal">
+        <div class="modal-dialog-soft">
+            <div class="modal-header-soft">
+                <h3 id="modal-title">Clinical Review & Stewardship Action</h3>
+                <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body-soft">
+                <div class="isolate-summary-box-soft mb-3" id="modal-isolate-summary">
+                    <!-- Summary injected via JS -->
+                </div>
+
+                <div class="form-group-soft mb-3">
+                    <label for="modal-action-select">Clinical Decision Action</label>
+                    <select id="modal-action-select" class="form-control-soft">
+                        <option value="APPROVE_STEWARDSHIP">Approve Antimicrobial Stewardship Restriction (Restrict Carbapenems)</option>
+                        <option value="REQUEST_REFLEX_TEST">Request Reflex Molecular Confirmation (E-Test / GeneXpert PCR)</option>
+                        <option value="OVERRIDE">Clinical Override (Proceed with Empiric Protocol with Justification)</option>
+                    </select>
+                </div>
+
+                <div class="form-group-soft mb-3">
+                    <label for="modal-reviewer-name">Reviewing Specialist</label>
+                    <input type="text" id="modal-reviewer-name" class="form-control-soft" value="Dr. Sarah Lin, PharmD (Infectious Diseases)" required>
+                </div>
+
+                <div class="form-group-soft mb-3">
+                    <label for="modal-clinical-notes">Clinical Justification & Audit Trail</label>
+                    <textarea id="modal-clinical-notes" class="form-control-soft" rows="3" placeholder="Enter clinical rationale for institutional audit trail..." required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer-soft">
+                <button class="btn-preset-pill" id="btn-cancel-modal">Cancel</button>
+                <button class="btn-neuro-submit-soft" id="btn-submit-action" style="margin-top:0;">Confirm & Sign-Off Action</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Clinical Escalation Enqueue Modal -->
+    <div class="modal-backdrop-soft" id="create-escalation-modal">
+        <div class="modal-dialog-soft">
+            <div class="modal-header-soft">
+                <h3>Enqueue New Clinical Case</h3>
+                <button class="btn-close-modal" id="btn-close-create-modal">&times;</button>
+            </div>
+            <div class="modal-body-soft">
+                <form id="create-escalation-form">
+                    <div class="form-row-2col mb-3">
+                        <div class="form-group-soft">
+                            <label for="new-esc-species">Bacterial Pathogen</label>
+                            <select id="new-esc-species" class="form-control-soft" required>
+                                <option value="Klebsiella pneumoniae">Klebsiella pneumoniae</option>
+                                <option value="Escherichia coli">Escherichia coli</option>
+                                <option value="Pseudomonas aeruginosa">Pseudomonas aeruginosa</option>
+                                <option value="Acinetobacter baumannii">Acinetobacter baumannii</option>
+                                <option value="Serratia marcescens">Serratia marcescens</option>
+                                <option value="Enterobacteria spp.">Enterobacteria spp.</option>
+                            </select>
+                        </div>
+                        <div class="form-group-soft">
+                            <label for="new-esc-isolate-id">Isolate Identifier</label>
+                            <input type="text" id="new-esc-isolate-id" class="form-control-soft" placeholder="e.g. ISO-948102" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row-2col mb-3">
+                        <div class="form-group-soft">
+                            <label for="new-esc-tier">Clinical Triage Tier</label>
+                            <select id="new-esc-tier" class="form-control-soft">
+                                <option value="TIER_1_CRITICAL_ESCALATION">Tier 1: Critical Escalation (Carbapenem / Reserve Failure)</option>
+                                <option value="TIER_2_CONFIRMATORY_TESTING">Tier 2: Confirmatory Testing (High Uncertainty / ESBL)</option>
+                                <option value="TIER_3_ROUTINE_MONITORING">Tier 3: Routine Monitoring</option>
+                            </select>
+                        </div>
+                        <div class="form-group-soft">
+                            <label for="new-esc-dept">Ward / Department</label>
+                            <input type="text" id="new-esc-dept" class="form-control-soft" value="Intensive Care Unit (ICU)">
+                        </div>
+                    </div>
+
+                    <div class="form-group-soft mb-3">
+                        <label for="new-esc-drugs">Critical Antibiotics at Risk</label>
+                        <input type="text" id="new-esc-drugs" class="form-control-soft" value="Carbapenems (Imipenem, Meropenem)" required>
+                    </div>
+
+                    <div class="form-group-soft mb-3">
+                        <label for="new-esc-reason">Clinical Escalation Reason / Trigger</label>
+                        <textarea id="new-esc-reason" class="form-control-soft" rows="2" placeholder="e.g. Rapidly escalating MIC values; suspected nosocomial clonal transmission..." required></textarea>
+                    </div>
+
+                    <div class="modal-footer-soft">
+                        <button type="button" class="btn-preset-pill" id="btn-cancel-create-modal">Cancel</button>
+                        <button type="submit" class="btn-neuro-submit-soft" style="margin-top:0;">⚡ Enqueue for Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Controller Script -->
+    <script src="app.js"></script>
+</body>
+</html>

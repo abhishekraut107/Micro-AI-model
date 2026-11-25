@@ -1,0 +1,130 @@
+{
+  "macro_auroc": 0.6262,
+  "macro_pr_auc": 0.4158,
+  "macro_brier_score": 0.1686,
+  "macro_f1_score": 0.2987,
+  "expected_calibration_error_ece": 0.0062,
+  "optimal_temperature": 0.9809,
+  "per_antibiotic": {
+    "AMX/AMP": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.5952824354171753,
+      "auroc": 0.6452,
+      "pr_auc": 0.6868,
+      "brier_score": 0.2204,
+      "f1_score": 0.7391
+    },
+    "AMC": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.6083177924156189,
+      "auroc": 0.6594,
+      "pr_auc": 0.7127,
+      "brier_score": 0.2164,
+      "f1_score": 0.7623
+    },
+    "CZ": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.5965238809585571,
+      "auroc": 0.6415,
+      "pr_auc": 0.6736,
+      "brier_score": 0.2213,
+      "f1_score": 0.7354
+    },
+    "FOX": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.5890750885009766,
+      "auroc": 0.6724,
+      "pr_auc": 0.7035,
+      "brier_score": 0.2157,
+      "f1_score": 0.7524
+    },
+    "CTX/CRO": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.576039731502533,
+      "auroc": 0.6529,
+      "pr_auc": 0.6652,
+      "brier_score": 0.2179,
+      "f1_score": 0.7424
+    },
+    "IPM": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.6027312278747559,
+      "auroc": 0.6712,
+      "pr_auc": 0.7096,
+      "brier_score": 0.2122,
+      "f1_score": 0.7487
+    },
+    "GEN": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.21911856532096863,
+      "auroc": 0.5396,
+      "pr_auc": 0.2648,
+      "brier_score": 0.1694,
+      "f1_score": 0.0
+    },
+    "AN": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.20235878229141235,
+      "auroc": 0.5653,
+      "pr_auc": 0.2657,
+      "brier_score": 0.1598,
+      "f1_score": 0.0
+    },
+    "Acide nalidixique": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.15890751779079437,
+      "auroc": 0.6219,
+      "pr_auc": 0.2175,
+      "brier_score": 0.1305,
+      "f1_score": 0.0
+    },
+    "ofx": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.16573557257652283,
+      "auroc": 0.6031,
+      "pr_auc": 0.2279,
+      "brier_score": 0.1366,
+      "f1_score": 0.0
+    },
+    "CIP": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.16635629534721375,
+      "auroc": 0.5921,
+      "pr_auc": 0.2247,
+      "brier_score": 0.1362,
+      "f1_score": 0.0
+    },
+    "C": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.15332092344760895,
+      "auroc": 0.6457,
+      "pr_auc": 0.2332,
+      "brier_score": 0.1248,
+      "f1_score": 0.0
+    },
+    "Co-trimoxazole": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.155803844332695,
+      "auroc": 0.6502,
+      "pr_auc": 0.2338,
+      "brier_score": 0.1261,
+      "f1_score": 0.0
+    },
+    "Furanes": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.13904407620429993,
+      "auroc": 0.613,
+      "pr_auc": 0.2052,
+      "brier_score": 0.1168,
+      "f1_score": 0.0
+    },
+    "colistine": {
+      "test_evaluated_count": 1611,
+      "resistance_rate": 0.15021724998950958,
+      "auroc": 0.6198,
+      "pr_auc": 0.2128,
+      "brier_score": 0.1243,
+      "f1_score": 0.0
+    }
+  }
+}

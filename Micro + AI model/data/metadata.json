@@ -1,0 +1,48 @@
+{
+  "total_raw_records": 10710,
+  "total_cleaned_records": 10710,
+  "dated_records": 8395,
+  "undated_records": 2315,
+  "train_records": 6716,
+  "test_records": 1679,
+  "train_date_range": [
+    "2019-01-03",
+    "2024-12-31"
+  ],
+  "test_date_range": [
+    "2024-12-31",
+    "2025-02-05"
+  ],
+  "species_distribution": {
+    "Escherichia coli": 6083,
+    "Enterobacteria spp.": 997,
+    "Unknown": 763,
+    "Proteus mirabilis": 742,
+    "Klebsiella pneumoniae": 702,
+    "Citrobacter spp.": 481,
+    "Morganella morganii": 305,
+    "Serratia marcescens": 256,
+    "Pseudomonas aeruginosa": 200,
+    "Acinetobacter baumannii": 181
+  },
+  "mdr_prevalence_train": 0.7589338892197737,
+  "mdr_prevalence_test": 0.7724836212030971,
+  "antibiotics_evaluated": [
+    "AMX/AMP",
+    "AMC",
+    "CZ",
+    "FOX",
+    "CTX/CRO",
+    "IPM",
+    "GEN",
+    "AN",
+    "Acide nalidixique",
+    "ofx",
+    "CIP",
+    "C",
+    "Co-trimoxazole",
+    "Furanes",
+    "colistine"
+  ],
+  "has_parquet": true
+}

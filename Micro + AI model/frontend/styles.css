@@ -1,0 +1,2293 @@
+/* ==========================================================================
+   BioSentinel AI - Soft Neumorphic Biological Computing Design System
+   Theme: Light Neumorphism (#F0F3F6) with Slate Green, Bioluminescent Teal, Muted Indigo
+   ========================================================================== */
+
+:root {
+    /* Base Colors */
+    --bg-base: #F0F3F6;
+    --surface-soft: #F0F3F6;
+    --surface-card: #F0F3F6;
+    --surface-elevated: #F4F7FA;
+    --surface-inset: #E7ECF0;
+    
+    /* Biological Computing Accents */
+    --accent-slate-green: #1E3A34;
+    --accent-teal: #0D9488;
+    --accent-teal-light: #14B8A6;
+    --accent-teal-glow: rgba(13, 148, 136, 0.25);
+    --accent-indigo: #4F46E5;
+    --accent-indigo-light: #6366F1;
+    --accent-emerald: #10B981;
+    --accent-amber: #D97706;
+    --accent-rose: #E11D48;
+    --accent-rose-soft: rgba(225, 29, 72, 0.1);
+
+    /* Typography & Contrast */
+    --text-primary: #1E293B;       /* High-contrast slate */
+    --text-secondary: #475569;     /* Medium slate */
+    --text-muted: #64748B;         /* Muted caption slate */
+    --text-light: #94A3B8;
+
+    /* Delicate, Refined Dual-Light Neumorphic Shadows (Zero Muddy Hatching) */
+    --shadow-soft-raised: 4px 4px 10px rgba(166, 175, 195, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.85);
+    --shadow-soft-raised-sm: 2px 2px 6px rgba(166, 175, 195, 0.3), -2px -2px 6px rgba(255, 255, 255, 0.85);
+    --shadow-soft-raised-lg: 6px 6px 16px rgba(166, 175, 195, 0.38), -6px -6px 16px rgba(255, 255, 255, 0.9);
+    --shadow-soft-hover: 5px 5px 14px rgba(166, 175, 195, 0.42), -5px -5px 14px rgba(255, 255, 255, 0.95);
+    
+    /* Inset Soft Shadows for Inputs, Recessed Cards & Pressed Tracks */
+    --shadow-soft-inset: inset 3px 3px 6px rgba(166, 175, 195, 0.3), inset -3px -3px 6px rgba(255, 255, 255, 0.85);
+    --shadow-soft-inset-deep: inset 4px 4px 9px rgba(166, 175, 195, 0.35), inset -4px -4px 9px rgba(255, 255, 255, 0.9);
+    
+    /* Subtle Bevel Glow for CTAs */
+    --shadow-cta-glow: 4px 4px 12px rgba(13, 148, 136, 0.25), -3px -3px 9px rgba(255, 255, 255, 0.9);
+
+    /* Fonts & Radii (16px to 24px Tactile Curves) */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+
+    --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   CSS Reset & Global Defaults
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 15px;
+}
+
+body.soft-ui-theme {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Spacing Helpers */
+.mt-1 { margin-top: 0.25rem !important; }
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-3 { margin-top: 0.85rem !important; }
+.mt-4 { margin-top: 1.25rem !important; }
+.mb-1 { margin-bottom: 0.25rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.mb-3 { margin-bottom: 0.85rem !important; }
+.mb-4 { margin-bottom: 1.25rem !important; }
+
+/* ==========================================================================
+   Global 3D Background Canvas (Present across full site)
+   ========================================================================== */
+.canvas-bg-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.75;
+    transition: opacity 0.5s ease;
+}
+
+#canvas-3d-bg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Ensure page content sits on top */
+.landing-page, .dashboard-page, .modal-backdrop-soft {
+    position: relative;
+    z-index: 1;
+}
+
+/* Page Visibility Toggling */
+.landing-page {
+    display: none;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.landing-page.active-page {
+    display: flex;
+}
+
+.dashboard-page {
+    display: none;
+    min-height: 100vh;
+}
+
+.dashboard-page.active-page {
+    display: flex;
+}
+
+/* ==========================================================================
+   1. EMBOSSED NEUMORPHIC PILL NAVBAR & SEGMENTED CONTROLS
+   ========================================================================== */
+.navbar-container {
+    position: sticky;
+    top: 1.25rem;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    padding: 0 1.5rem;
+}
+
+.neuro-pill-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1280px;
+    padding: 0.65rem 1.5rem;
+    background: var(--surface-soft);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-raised);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.brand-glyph-soft {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--surface-soft);
+    box-shadow: var(--shadow-soft-raised-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bio-pulse-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 10px var(--accent-teal-light);
+    animation: bioPulse 2.4s infinite ease-in-out;
+}
+
+@keyframes bioPulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 14px var(--accent-teal); }
+}
+
+.brand-text-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.brand-accent {
+    color: var(--accent-teal);
+}
+
+.brand-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Nav Menu Segmented Control Track */
+.nav-menu-links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--surface-inset);
+    padding: 0.3rem 0.4rem;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-inset);
+    border: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.nav-link-soft {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.45rem 1.15rem;
+    border-radius: var(--radius-pill);
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.nav-link-soft:hover {
+    color: var(--accent-slate-green);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Active Nav Pill: Tactile Raised Pure White Pill on Inset Track */
+.nav-link-soft.active {
+    background: #ffffff !important;
+    color: var(--accent-teal) !important;
+    font-weight: 700 !important;
+    box-shadow: 2px 2px 6px rgba(166, 175, 195, 0.35), -2px -2px 6px rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.btn-neuro-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.35rem;
+    background: linear-gradient(135deg, #134e4a, #0d9488);
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    box-shadow: var(--shadow-cta-glow);
+    transition: var(--transition-smooth);
+}
+
+.btn-neuro-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(13, 148, 136, 0.4), -3px -3px 9px rgba(255, 255, 255, 0.9);
+}
+
+.btn-sparkle {
+    font-size: 0.8rem;
+    color: #99f6e4;
+}
+
+.btn-arrow-icon {
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-neuro-glow:hover .btn-arrow-icon {
+    transform: translateX(3px);
+}
+
+/* ==========================================================================
+   2. HERO SECTION & 3D ISOLATE VIEWPORT
+   ========================================================================== */
+.hero-section {
+    padding: 3.5rem 2rem 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-grid {
+    max-width: 1280px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.hero-left-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.neuro-badge-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    background: var(--surface-soft);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-inset);
+    color: var(--accent-slate-green);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.pulse-indicator-teal {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 8px var(--accent-teal);
+    animation: bioPulse 2s infinite ease-in-out;
+}
+
+.hero-headline {
+    font-size: 3.1rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--accent-slate-green);
+    margin-bottom: 1.35rem;
+}
+
+.teal-gradient-text {
+    background: linear-gradient(135deg, var(--accent-teal) 20%, var(--accent-indigo) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtext {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 580px;
+}
+
+.hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-neuro-primary-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.85rem;
+    background: linear-gradient(135deg, var(--accent-slate-green), #115e59);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: 4px 4px 12px rgba(166, 175, 195, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-neuro-primary-soft:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 16px rgba(166, 175, 195, 0.45), -6px -6px 16px rgba(255, 255, 255, 0.95);
+}
+
+.btn-neuro-secondary-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.65rem;
+    background: var(--surface-soft);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-raised);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-neuro-secondary-soft:hover {
+    background: #f8fafc;
+    box-shadow: var(--shadow-soft-hover);
+    color: var(--accent-teal);
+}
+
+/* Stats Counter Strip */
+.stats-counter-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 580px;
+}
+
+.stat-soft-pill {
+    padding: 0.85rem 1.25rem;
+    background: var(--surface-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-raised-sm);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: var(--transition-smooth);
+}
+
+.stat-soft-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft-raised);
+}
+
+.stat-number {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    font-family: var(--font-mono);
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.stat-soft-pill.accent-teal .stat-number { color: var(--accent-teal); }
+.stat-soft-pill.accent-indigo .stat-number { color: var(--accent-indigo); }
+.stat-soft-pill.accent-green .stat-number { color: var(--accent-emerald); }
+
+/* Right Viewport: Hero 3D Card */
+.hero-right-viewport {
+    position: relative;
+}
+
+.viewport-neuro-card {
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-raised-lg);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+}
+
+.viewport-header-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.viewport-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.status-dot-active {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 6px var(--accent-teal);
+}
+
+.viewport-tag {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--accent-teal);
+    background: var(--surface-inset);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+}
+
+.canvas-3d-hero-container {
+    flex: 1;
+    position: relative;
+    cursor: grab;
+}
+
+.canvas-3d-hero-container:active {
+    cursor: grabbing;
+}
+
+.viewport-instruction-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(240, 243, 246, 0.85);
+    backdrop-filter: blur(6px);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-raised-sm);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.viewport-footer-strip {
+    padding: 0.75rem 1.25rem;
+    background: var(--surface-soft);
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.receptor-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.legend-chip {
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.chip-teal { color: var(--accent-teal); }
+.chip-indigo { color: var(--accent-indigo); }
+.chip-amber { color: var(--accent-amber); }
+
+/* ==========================================================================
+   3. LIVE SURVEILLANCE SNAPSHOT (NEUMORPHIC DATA GRID)
+   ========================================================================== */
+.section-snapshot, .section-workflow, .section-scrolly, .section-architecture, .section-recessed-cta {
+    padding: 4.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-header-center {
+    text-align: center;
+    max-width: 780px;
+    margin-bottom: 3.25rem;
+}
+
+.section-subheading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.section-main-heading {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.85rem;
+}
+
+.section-lead-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.snapshot-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1280px;
+    width: 100%;
+}
+
+.neuro-card-soft {
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-raised);
+    padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+}
+
+.neuro-card-soft:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft-hover);
+}
+
+.card-soft-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.card-icon-bubble {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--surface-soft);
+    box-shadow: var(--shadow-soft-raised-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.bubble-teal { color: var(--accent-teal); }
+.bubble-rose { color: var(--accent-rose); }
+.bubble-indigo { color: var(--accent-indigo); }
+
+.card-header-titles h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    line-height: 1.3;
+}
+
+.card-sub-category {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Sparkline Card Specifics */
+.sparkline-wrapper {
+    background: var(--surface-inset);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-inset);
+    padding: 0.75rem;
+    margin: 1rem 0;
+}
+
+.sparkline-svg {
+    width: 100%;
+    height: 110px;
+    overflow: visible;
+}
+
+.sparkline-path {
+    fill: none;
+    stroke: var(--accent-teal);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+}
+
+.sparkline-point {
+    fill: #ffffff;
+    stroke: var(--accent-teal);
+    stroke-width: 2.5;
+    cursor: pointer;
+    transition: r 0.2s ease, fill 0.2s ease;
+}
+
+.sparkline-point:hover {
+    r: 7;
+    fill: var(--accent-teal);
+}
+
+.sparkline-point.active-pulse {
+    fill: var(--accent-rose);
+    stroke: #ffffff;
+    animation: pointPulse 1.8s infinite;
+}
+
+@keyframes pointPulse {
+    0%, 100% { r: 5; }
+    50% { r: 7.5; }
+}
+
+.card-stats-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.footer-stat-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.f-val {
+    font-size: 0.92rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.text-teal { color: var(--accent-teal) !important; }
+.text-rose { color: var(--accent-rose) !important; }
+.text-amber { color: var(--accent-amber) !important; }
+.text-indigo { color: var(--accent-indigo) !important; }
+.font-bold { font-weight: 700 !important; }
+.font-mono { font-family: var(--font-mono) !important; }
+
+/* Anomaly Alerts List */
+.anomaly-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 0.75rem 0;
+}
+
+.anomaly-item-soft {
+    background: var(--surface-elevated);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-raised-sm);
+    padding: 0.85rem 1rem;
+    border-left: 3.5px solid var(--accent-rose);
+}
+
+.item-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.species-name {
+    font-size: 0.85rem;
+    color: var(--accent-slate-green);
+}
+
+.antibiotic-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+}
+
+.tag-rose {
+    background: var(--accent-rose-soft);
+    color: var(--accent-rose);
+}
+
+.tag-amber {
+    background: rgba(217, 119, 6, 0.12);
+    color: var(--accent-amber);
+}
+
+.item-desc {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+.status-badge-soft {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.badge-danger {
+    background: rgba(225, 29, 72, 0.12);
+    color: var(--accent-rose);
+    box-shadow: var(--shadow-soft-raised-sm);
+}
+
+.badge-dot-pulsing {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-rose);
+    box-shadow: 0 0 6px var(--accent-rose);
+    animation: bioPulse 1.6s infinite;
+}
+
+.card-action-bar {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.btn-link-action {
+    background: none;
+    border: none;
+    color: var(--accent-teal);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-link-action:hover {
+    color: var(--accent-slate-green);
+    transform: translateX(3px);
+}
+
+/* Confidence Gauge Card */
+.confidence-gauge-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.gauge-arc-outer {
+    position: relative;
+    width: 200px;
+    height: 110px;
+}
+
+.gauge-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.gauge-center-text {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.gauge-val {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--accent-teal);
+    line-height: 1;
+}
+
+.gauge-lbl {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.calibration-specs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 0.85rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+}
+
+.spec-name { color: var(--text-secondary); }
+.spec-val { font-weight: 600; color: var(--text-primary); }
+
+/* ==========================================================================
+   4. HOW THE DIGITAL TWIN WORKS (3-STEP CONNECTED PATH)
+   ========================================================================== */
+.workflow-steps-path {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr 40px 1fr;
+    align-items: center;
+    max-width: 1280px;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.workflow-step-card-soft {
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-raised);
+    padding: 2.25rem 1.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.workflow-step-card-soft:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-soft-hover);
+}
+
+.step-badge-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.75rem;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: rgba(166, 175, 195, 0.45);
+}
+
+.step-icon-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--surface-soft);
+    box-shadow: var(--shadow-soft-raised-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.step-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    margin-bottom: 0.25rem;
+}
+
+.step-subtitle {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-teal);
+    margin-bottom: 0.85rem;
+}
+
+.step-desc {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+}
+
+.step-tags-wrap {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag-pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    color: var(--accent-slate-green);
+}
+
+.step-connector-line {
+    height: 4px;
+    background: linear-gradient(90deg, #cbd5e1, var(--accent-teal), #cbd5e1);
+    position: relative;
+    border-radius: 2px;
+}
+
+.connector-pulse {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 8px var(--accent-teal);
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: connectorSlide 3s infinite ease-in-out;
+}
+
+@keyframes connectorSlide {
+    0%, 100% { transform: translate(-50%, 0) scale(0.8); }
+    50% { transform: translate(-50%, 0) scale(1.3); }
+}
+
+/* ==========================================================================
+   5. OUTBREAK TIMELINE SCRUB (DYNAMIC SCROLLYTELLING)
+   ========================================================================== */
+.scrolly-container-soft {
+    max-width: 1100px;
+    width: 100%;
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-raised);
+    padding: 2.25rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.scrolly-scrubber-bar {
+    margin-bottom: 2.25rem;
+}
+
+.scrubber-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.s-step {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.s-step.active {
+    color: var(--accent-teal);
+    font-weight: 700;
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+}
+
+.scrubber-range-wrap {
+    padding: 0.5rem 0;
+}
+
+.soft-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: var(--radius-pill);
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    outline: none;
+    cursor: pointer;
+}
+
+.soft-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 2px 2px 6px rgba(166, 175, 195, 0.4), -2px -2px 6px rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.soft-range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.scrolly-cards-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.scrolly-card-panel {
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft-raised-sm);
+    padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panel-highlight-teal {
+    border-top: 4px solid var(--accent-teal);
+    box-shadow: var(--shadow-soft-raised);
+}
+
+.panel-badge-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--accent-slate-green);
+    margin-bottom: 0.85rem;
+}
+
+.badge-neutral-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+.panel-event-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    margin-bottom: 0.65rem;
+}
+
+.panel-event-desc {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+}
+
+.panel-metric-row {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+}
+
+.p-met {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-met-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+}
+
+.p-met-lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   6. SEVEN-STAGE AI ENGINEERING FOUNDATIONS
+   ========================================================================== */
+.architecture-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1280px;
+    width: 100%;
+}
+
+.arch-card-soft {
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-raised);
+    padding: 2rem 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+}
+
+.arch-card-soft:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft-hover);
+}
+
+.arch-icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-md);
+    background: var(--surface-soft);
+    box-shadow: var(--shadow-soft-raised-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.arch-stage-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent-teal);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
+
+.arch-card-soft h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+.arch-card-soft p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+}
+
+.arch-specs-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   7. RECESSED CALL TO ACTION & MINIMAL FOOTER
+   ========================================================================== */
+.section-recessed-cta {
+    padding-top: 1rem;
+}
+
+.recessed-card-soft {
+    max-width: 1100px;
+    width: 100%;
+    background: var(--surface-inset);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-inset-deep);
+    padding: 3.5rem 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+.recessed-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-teal);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+}
+
+.recessed-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    margin-bottom: 1rem;
+}
+
+.recessed-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.recessed-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* Clean Minimal Footer */
+.footer-neuro-soft {
+    width: 100%;
+    padding: 2.5rem 2rem;
+    background: var(--surface-soft);
+    border-top: 1px solid rgba(166, 175, 195, 0.25);
+    margin-top: 3rem;
+}
+
+.footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.brand-title-sm {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+}
+
+.footer-compliance {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+}
+
+.agent-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1.15rem;
+    background: var(--surface-soft);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-raised-sm);
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.agent-dot-pulsing {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-emerald);
+    box-shadow: 0 0 8px var(--accent-emerald);
+    animation: bioPulse 2s infinite;
+}
+
+/* ==========================================================================
+   8. CLINICAL SURVEILLANCE PORTAL / DASHBOARD (DESKTOP REDESIGN)
+   ========================================================================== */
+.dashboard-page {
+    width: 100vw;
+    display: none;
+    flex-direction: row;
+}
+
+.sidebar-neuro-soft {
+    width: 290px;
+    min-width: 290px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background: var(--surface-soft);
+    border-right: 1px solid rgba(166, 175, 195, 0.25);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 0 10px rgba(166, 175, 195, 0.15);
+    z-index: 20;
+    overflow-y: auto;
+}
+
+/* Dedicated Top Section in Sidebar for Return to Home Button (No Overlapping!) */
+.sidebar-top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(166, 175, 195, 0.25);
+}
+
+.btn-return-home-soft {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1.15rem;
+    background: #ffffff;
+    color: var(--accent-slate-green);
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-pill);
+    box-shadow: 2px 2px 8px rgba(166, 175, 195, 0.3), -2px -2px 8px rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.btn-return-home-soft:hover {
+    box-shadow: 4px 4px 12px rgba(166, 175, 195, 0.4), -4px -4px 12px rgba(255, 255, 255, 1);
+    color: var(--accent-teal);
+    transform: translateY(-2px);
+}
+
+.return-arrow {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-return-home-soft:hover .return-arrow {
+    transform: translateX(-3px);
+}
+
+.portal-brand-block {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.portal-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-glyph-soft-sm {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 10px var(--accent-teal-light);
+    flex-shrink: 0;
+}
+
+.portal-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    line-height: 1.2;
+}
+
+.portal-title span {
+    color: var(--accent-teal);
+}
+
+.portal-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.portal-spec-pill {
+    padding: 0.35rem 0.75rem;
+    background: var(--surface-inset);
+    border-radius: var(--radius-pill);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--accent-slate-green);
+    text-align: center;
+    box-shadow: var(--shadow-soft-inset);
+}
+
+.sidebar-menu-soft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 1rem 0;
+}
+
+.menu-item-soft {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.8rem 1rem;
+    background: var(--surface-soft);
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft-raised-sm);
+    transition: var(--transition-smooth);
+    position: relative;
+    text-align: left;
+}
+
+.menu-item-soft:hover {
+    color: var(--accent-slate-green);
+    box-shadow: var(--shadow-soft-hover);
+    transform: translateY(-1px);
+}
+
+.menu-item-soft.active {
+    color: var(--accent-teal);
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    font-weight: 700;
+}
+
+.badge-count-soft {
+    margin-left: auto;
+    background: var(--accent-rose);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-pill);
+}
+
+.sidebar-footer-soft {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(166, 175, 195, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.agent-status-pill-soft {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-slate-green);
+}
+
+.status-dot-pulse-teal {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 8px var(--accent-teal);
+    animation: bioPulse 2s infinite;
+}
+
+.api-address-lbl {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+/* Portal Main Content Area */
+.main-content-soft {
+    flex: 1;
+    padding: 2.25rem 2.75rem;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.top-header-soft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-main-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    letter-spacing: -0.02em;
+}
+
+.page-main-subtitle {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.header-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Top Return to Home Button */
+.btn-top-back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    background: #ffffff;
+    color: var(--accent-slate-green);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: 1px solid rgba(166, 175, 195, 0.25);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-raised-sm);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-top-back-home:hover {
+    color: var(--accent-teal);
+    box-shadow: var(--shadow-soft-hover);
+    transform: translateY(-2px);
+}
+
+.header-badges-row {
+    display: flex;
+    gap: 0.85rem;
+}
+
+.header-pill-soft {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.85rem;
+    background: var(--surface-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-raised-sm);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.pill-k {
+    font-size: 0.66rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.pill-v {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+}
+
+/* Tab Views */
+.tab-view {
+    display: none;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.tab-view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Metrics Summary Grid */
+.metrics-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card-soft {
+    background: var(--surface-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft-raised);
+    padding: 1.45rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+}
+
+.metric-card-soft:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft-hover);
+}
+
+.accent-border-amber { border-left: 4px solid var(--accent-amber); }
+.accent-border-rose { border-left: 4px solid var(--accent-rose); }
+.accent-border-teal { border-left: 4px solid var(--accent-teal); }
+
+.m-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+}
+
+.m-card-number {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+}
+
+.m-card-footer {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.chip-soft {
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--accent-slate-green);
+}
+
+/* Content Grids */
+.content-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.panel-card-soft {
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft-raised);
+    padding: 1.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.75rem;
+}
+
+.panel-header-soft {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.35rem;
+}
+
+.panel-header-soft h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+}
+
+.p-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.panel-tag-soft {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    color: var(--accent-teal);
+    font-family: var(--font-mono);
+}
+
+/* Species Breakdown List */
+.species-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.species-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.s-name {
+    width: 170px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--accent-slate-green);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.s-bar-wrap {
+    flex: 1;
+    height: 8px;
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+
+.s-bar-fill {
+    height: 100%;
+    background: var(--accent-teal);
+    border-radius: var(--radius-pill);
+    transition: width 0.6s ease;
+}
+
+.s-count {
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    width: 60px;
+    text-align: right;
+}
+
+/* Antimicrobial Class Bars */
+.class-resistance-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Data Tables */
+.table-container-soft {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-inset);
+    background: var(--surface-inset);
+    padding: 0.5rem;
+}
+
+.data-table-soft {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    background: var(--surface-soft);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.data-table-soft th {
+    background: var(--surface-elevated);
+    padding: 0.75rem 0.95rem;
+    text-align: left;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    border-bottom: 1px solid rgba(166, 175, 195, 0.25);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.data-table-soft td {
+    padding: 0.75rem 0.95rem;
+    border-bottom: 1px solid rgba(166, 175, 195, 0.15);
+    color: var(--text-secondary);
+}
+
+.data-table-soft tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table-soft tr:hover td {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Heatmap Wrapper */
+.matrix-scroll-wrapper {
+    overflow-x: auto;
+    padding: 0.75rem;
+    background: var(--surface-inset);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-inset);
+}
+
+/* Forms & Input Elements */
+.clinical-input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+
+.form-group-soft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group-soft label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-slate-green);
+}
+
+.form-control-soft {
+    padding: 0.75rem 1rem;
+    background: var(--surface-inset);
+    border: 1px solid rgba(166, 175, 195, 0.2);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-inset);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.form-control-soft:focus {
+    border-color: var(--accent-teal);
+    box-shadow: inset 3px 3px 6px rgba(13, 148, 136, 0.2), inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+}
+
+.form-row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.preset-pill-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.preset-label {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+}
+
+.btn-preset-pill {
+    background: var(--surface-soft);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft-raised-sm);
+    color: var(--accent-slate-green);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-preset-pill:hover {
+    color: var(--accent-teal);
+    box-shadow: var(--shadow-soft-hover);
+}
+
+.btn-neuro-submit-soft {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent-slate-green), #115e59);
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: 4px 4px 10px rgba(166, 175, 195, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-top: 0.5rem;
+}
+
+.btn-neuro-submit-soft:hover {
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 14px rgba(166, 175, 195, 0.42), -5px -5px 14px rgba(255, 255, 255, 0.95);
+}
+
+/* Results Placeholder & Panel */
+.placeholder-box-soft {
+    background: var(--surface-inset);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft-inset);
+    padding: 3rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+}
+
+.placeholder-box-soft .p-icon {
+    font-size: 2.25rem;
+}
+
+.badge-status-soft {
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    color: var(--text-muted);
+}
+
+.alert-banner-soft {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--accent-rose-soft);
+    border-left: 4px solid var(--accent-rose);
+    box-shadow: var(--shadow-soft-raised-sm);
+}
+
+.alert-title-text {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--accent-rose);
+    margin-bottom: 0.25rem;
+}
+
+.alert-body-text {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+.stats-strip-soft {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+}
+
+.stat-box-soft {
+    background: var(--surface-elevated);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-raised-sm);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.s-lbl {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+}
+
+.s-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+    margin: 0.15rem 0;
+}
+
+.s-sub {
+    font-size: 0.7rem;
+    color: var(--accent-teal);
+    font-weight: 600;
+}
+
+/* 15-Antibiotic Prediction Bars Grid */
+.abx-predictions-container h4 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    margin-bottom: 0.85rem;
+}
+
+.abx-bars-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.abx-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.abx-name {
+    width: 140px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.abx-track {
+    flex: 1;
+    height: 7px;
+    background: var(--surface-inset);
+    box-shadow: var(--shadow-soft-inset);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+
+.abx-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    transition: width 0.5s ease;
+}
+
+.abx-pct {
+    width: 48px;
+    font-size: 0.76rem;
+    font-family: var(--font-mono);
+    text-align: right;
+    color: var(--text-secondary);
+}
+
+/* Simulator Controls */
+.simulator-controls-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.control-box-soft {
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft-raised-sm);
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.control-header-soft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.control-header-soft label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+}
+
+.control-val {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.control-hint-soft {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.65rem;
+    line-height: 1.4;
+}
+
+.panel-inner-soft {
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft-raised-sm);
+    padding: 1.35rem;
+}
+
+.panel-inner-soft h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-slate-green);
+    margin-bottom: 0.85rem;
+}
+
+.insights-list-soft {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.insights-list-soft li {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.insights-list-soft li::before {
+    content: "•";
+    color: var(--accent-teal);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* Modal Dialog */
+.modal-backdrop-soft {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.modal-backdrop-soft.active {
+    display: flex;
+}
+
+.modal-dialog-soft {
+    background: var(--surface-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+    max-width: 580px;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header-soft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.modal-header-soft h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--accent-slate-green);
+}
+
+.btn-close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.btn-close-modal:hover {
+    color: var(--accent-rose);
+}
+
+.isolate-summary-box-soft {
+    background: var(--surface-inset);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft-inset);
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.modal-footer-soft {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-headline {
+        font-size: 2.5rem;
+    }
+    .snapshot-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .workflow-steps-path {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .step-connector-line {
+        display: none;
+    }
+    .scrolly-cards-comparison {
+        grid-template-columns: 1fr;
+    }
+    .architecture-grid-3col {
+        grid-template-columns: 1fr;
+    }
+    .metrics-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .content-grid-2col {
+        grid-template-columns: 1fr;
+    }
+    .simulator-controls-grid {
+        grid-template-columns: 1fr;
+    }
+}

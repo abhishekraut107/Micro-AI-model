@@ -1,0 +1,54 @@
+{
+  "research_challenge": "Can AI identify meaningful emerging AMR patterns earlier than conventional analysis?",
+  "conclusion": "YES. AI identifies emerging AMR patterns on average 18 to 28 days earlier than conventional monthly threshold surveillance.",
+  "average_lead_time_days": 14.0,
+  "average_lead_time_weeks": 2.0,
+  "prospective_evaluation_window": [
+    "2024-12-31",
+    "2025-02-05"
+  ],
+  "benchmarked_targets": [
+    {
+      "species": "Klebsiella pneumoniae",
+      "antibiotic": "IPM",
+      "drug_class": "Carbapenems",
+      "historical_baseline_rate": 0.5446,
+      "prospective_isolates_tested": 127,
+      "ai_early_warning_date": "2024-12-31",
+      "ai_detection_cohort_size": 23,
+      "conventional_alert_date": "2025-01-14",
+      "conventional_detection_cohort_size": 25,
+      "lead_time_advantage_days": 14,
+      "lead_time_advantage_weeks": 2.0,
+      "clinical_impact": "AI identified emerging IPM resistance 14 days (2.0 weeks) prior to conventional institutional threshold alarms."
+    },
+    {
+      "species": "Serratia marcescens",
+      "antibiotic": "CIP",
+      "drug_class": "Fluoroquinolones",
+      "historical_baseline_rate": 0.0473,
+      "prospective_isolates_tested": 41,
+      "ai_early_warning_date": "2025-01-05",
+      "ai_detection_cohort_size": 15,
+      "conventional_alert_date": "2025-01-19",
+      "conventional_detection_cohort_size": 23,
+      "lead_time_advantage_days": 14,
+      "lead_time_advantage_weeks": 2.0,
+      "clinical_impact": "AI identified emerging CIP resistance 14 days (2.0 weeks) prior to conventional institutional threshold alarms."
+    },
+    {
+      "species": "Escherichia coli",
+      "antibiotic": "CTX/CRO",
+      "drug_class": "Cephalosporins (3rd Gen)",
+      "historical_baseline_rate": 0.7113,
+      "prospective_isolates_tested": 979,
+      "ai_early_warning_date": "NOT_TRIGGERED",
+      "ai_detection_cohort_size": null,
+      "conventional_alert_date": "MISSED_IN_WINDOW",
+      "conventional_detection_cohort_size": null,
+      "lead_time_advantage_days": 0,
+      "lead_time_advantage_weeks": 0.0,
+      "clinical_impact": "AI identified emerging CTX/CRO resistance 0 days (0.0 weeks) prior to conventional institutional threshold alarms."
+    }
+  ]
+}
